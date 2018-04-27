@@ -15,6 +15,9 @@ const extend = (app, settings) => {
         process.exit(1);
     }
 
+    app.set('views', config.views.path);
+    app.set('view engine', config.views.engine);
+
     app.use(passport.initialize());
     app.set('media', config.media);
     app.use('/tagus-admin', express.static(path.join(__dirname, '/client/build/')));
