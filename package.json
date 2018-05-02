@@ -1,5 +1,5 @@
 {
-    "name": "Tagus-cms",
+    "name": "tagus-cms",
     "version": "0.0.1",
     "description": "A Simple CMS using only Javascript.",
     "main": "index.js",
