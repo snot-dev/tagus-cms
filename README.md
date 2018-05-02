@@ -85,9 +85,6 @@ The extend function accepts your Express instance and an object with the followi
     }
 }
 ```
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Contributing
 
@@ -97,15 +94,29 @@ I'm using the 'https://github.com/snot-dev/project-tagus' repo to develop this a
 
 ## Authors
 
-* **Gonçalo Assunção** - *Initial work* - [snot-dev](https://github.com/snot-dev)
+* **Gonçalo Assunção** - [snot-dev](https://github.com/snot-dev)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+Thanks to the following guys, for the help and support:
+
+* **Gonçalo Cardoso** - [gcardoso89](https://github.com/gcardoso89)
+* **João Ramalho** - [ramalhovfc](https://github.com/ramalhovfc)
+* **Leandro Mendes** - [Pr0fil3](https://github.com/Pr0fil3)
+* **Tiago Fernandes** - [vftiago](https://github.com/vftiago)
+
+The Tagus Logo was created by:
+
+**Adolfo Ferreira** - http://www.adolfoferreira.com/
+
+Special thanks to, for the many design inputs:
+
+**Jesús Alfonso Sánchez** - http://www.jasnchz.com/
+
+
 
