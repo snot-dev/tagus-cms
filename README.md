@@ -1,6 +1,6 @@
 # Tagus CMS
 
-This is a simple CMS using Javascript only! It was developed with Nodejs/Express, Mongo DB and React.
+This is a simple CMS using Javascript only! It was developed with Nodejs/Express, Mongo DB and React
 
 ## Getting Started
 
@@ -118,5 +118,5 @@ Special thanks to, for the many design inputs:
 
 **Jesús Alfonso Sánchez** - http://www.jasnchz.com/
 
-
+Enjoy!
 
