@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-require('../../../config');
+const rfr = require('rfr');
+rfr('/config');
 mongoose.Promise = require('bluebird');
 const removeCollections = require('./dbScripts').removeCollections;
 
