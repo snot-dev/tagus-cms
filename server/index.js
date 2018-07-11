@@ -99,7 +99,9 @@ const site = () => {
             return Translates.findOne({})
         })
         .then(doc => {
-            translatesContent = doc.translates;
+            if (doc) {
+                translatesContent = doc.translates;
+            }
             
             Content.findOne({'url': req.url})
             .populate({
