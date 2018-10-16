@@ -1,6 +1,6 @@
 {
     "name": "tagus-cms",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "A Simple CMS using only Javascript.",
     "main": "index.js",
     "author": "snot-dev",
