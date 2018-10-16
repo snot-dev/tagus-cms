@@ -54,12 +54,8 @@ router.post('/', (req, res) => {
                     })
                     .then(parent => {
                         if (parent && !parent.children.includes(newContent._id)) {
-                            const clone = parent.children.slice();
-                            clone.push(newContent._id);
-                            parent.children = clone;
-
+                            parent.children.push(newContent._id);
                             return parent.save();
-
                         }
                     })
                     .then(() => {
