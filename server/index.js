@@ -17,17 +17,17 @@ const Cookies = require('universal-cookie');
 
 const api = (app, strategy, settings) => {
     const router = require('express').Router();
-    
+
     let protectMiddleware = (req, res, next) => {
         next();
     };
-    
+
     if(strategy && passport.strategies[strategy]) {
         const session = {session: false};
         passport.strategies[strategy](User, settings.authSecretKey);
         protectMiddleware =  passport.authenticate(strategy, session)
     }
-    
+
     router.use('/content', protectMiddleware, content);
     router.use('/bridges', protectMiddleware, bridges);
     router.use('/units', protectMiddleware, units);
@@ -46,12 +46,13 @@ const site = () => {
     const router = require('express').Router();
     const bridgesContent = {};
     let translatesContent = {};
+
     const fields = 'name alias url template partial content'
-    
+
     router.get('/tagus/preview/:id', (req, res) => {
         const cookies = new Cookies(req.headers.cookie);
         const shouldPreview = cookies.get(`preview_${req.params.id}`);
-        
+
         if (shouldPreview) {
             Bridges.find({})
             .then(docs => {
@@ -60,19 +61,18 @@ const site = () => {
                         bridgesContent[bridge.alias] = bridge.content;
                     }
                 }
-                
+
                 return Translates.findOne({})
             })
             .then(doc => {
                 translatesContent = doc.translates;
-                
+
                 Content.findOne({'_id': req.params.id})
                 .populate({
                     path: 'children',
                     populate: {path: 'children'}
                 })
                 .exec((err, result) => {
-                    console.log(result);
                     if(result) {
                         res.render(result.template, {viewContent: result, bridges: bridgesContent, translates: translatesContent});
                     }
@@ -88,7 +88,22 @@ const site = () => {
     });
 
     router.get('*', (req, res) => {
-        Bridges.find({})
+        const mainNav = [];
+
+        Content.findOne({'url': '/'})
+        .populate({path: 'children'})
+        .then(home => {
+            for(const child of home.children) {
+                if(child.nav) {
+                    mainNav.push({
+                        url: child.url,
+                        name: child.name,
+                        alias: child.alias
+                    });
+                }
+            }
+            return Bridges.find({});
+        })
         .then(docs => {
             if(docs) {
                 for(const bridge of docs) {
@@ -102,7 +117,7 @@ const site = () => {
             if (doc) {
                 translatesContent = doc.translates;
             }
-            
+
             Content.findOne({'url': req.url})
             .populate({
                 path: 'children',
@@ -110,7 +125,7 @@ const site = () => {
             })
             .exec((err, result) => {
                 if(result && result.published ) {
-                    res.render(result.template, {viewContent: result, bridges: bridgesContent, translates: translatesContent});
+                    res.render(result.template, {viewContent: result, bridges: bridgesContent, translates: translatesContent, mainNavigation: mainNav});
                 }
                 else {
                     res.json("404 - not found");

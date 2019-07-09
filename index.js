@@ -8,7 +8,7 @@ mongoose.Promise = require('bluebird');
 
 const extend = (app, settings) => {
     const config = new Settings(settings);
-    
+
     if (config.isErrors()) {
         console.error(config.getErrors());
 
@@ -23,9 +23,9 @@ const extend = (app, settings) => {
     app.use('/tagus-admin', express.static(path.join(__dirname, '/client/build/')));
     app.use('/tagus/api', routes.api(app, 'jwt', config));
     app.use('/', routes.site());
-    
+
     mongoose.connect(config.mongoConnectionString);
-    
+
     mongoose.connection.on('connected', function () {
         console.log("mongoose " + mongoose.connection.readyState);
         console.log('Connected to ' + mongoose.connection.db.s.databaseName);
